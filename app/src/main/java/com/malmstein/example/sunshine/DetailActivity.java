@@ -1,23 +1,23 @@
 package com.malmstein.example.sunshine;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ShareActionProvider;
 
-public class WeatherActivity extends FragmentActivity {
+public class DetailActivity extends FragmentActivity {
+
+    private static final String FORECAST_HASHTAG = "#SunshineApp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_detail);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new ForecastFragment())
+                    .add(R.id.container, new WeatherDetailFragment())
                     .commit();
         }
     }
@@ -25,7 +25,11 @@ public class WeatherActivity extends FragmentActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_detail, menu);
+
+        MenuItem shareItem = menu.findItem(R.id.action_share);
+        ShareActionProvider mShareActionProvider = (ShareActionProvider) shareItem.getActionProvider();
+        mShareActionProvider.setShareIntent(createShareIntent());
         return true;
     }
 
@@ -42,24 +46,15 @@ public class WeatherActivity extends FragmentActivity {
             return true;
         }
 
-        if (id == R.id.action_map) {
-            showMap();
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
-    private void showMap(){
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String location = preferences.getString(getString(R.string.pref_key_location), getString(R.string.pref_location_default));
-        Uri geolocation = Uri.parse("geo:0.0?").buildUpon()
-                .appendQueryParameter("q", location)
-                .build();
-        Intent mapIntent = new Intent(Intent.ACTION_VIEW);
-        mapIntent.setData(geolocation);
-
-        startActivity(mapIntent);
+    private Intent createShareIntent(){
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, getIntent().getStringExtra(ForecastFragment.EXTRA_WEATHER) + FORECAST_HASHTAG);
+        return shareIntent;
     }
 
 
