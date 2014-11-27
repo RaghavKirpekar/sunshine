@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends FragmentActivity {
+public class WeatherActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

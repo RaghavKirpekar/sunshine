@@ -42,6 +42,7 @@ public class ForecastFragment extends Fragment {
 
         forecastAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item_forecast, R.id.list_item_forecast_textview);
         weatherList = (ListView) rootView.findViewById(R.id.listview_forecast);
+        weatherList.setAdapter(forecastAdapter);
 
         return rootView;
     }
@@ -164,7 +165,6 @@ public class ForecastFragment extends Fragment {
         protected void onPostExecute(String[] strings) {
             super.onPostExecute(strings);
             forecastAdapter.addAll(strings);
-            weatherList.setAdapter(forecastAdapter);
         }
     }
 
