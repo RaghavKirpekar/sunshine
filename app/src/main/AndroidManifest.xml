@@ -10,7 +10,7 @@
     android:label="@string/app_name"
     android:theme="@style/AppTheme">
     <activity
-      android:name="com.malmstein.example.sunshine.MainActivity"
+      android:name="com.malmstein.example.sunshine.WeatherActivity"
       android:label="@string/app_name">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -18,6 +18,24 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+    <activity
+      android:name="com.malmstein.example.sunshine.DetailActivity"
+      android:label="@string/title_activity_detail"
+      android:parentActivityName="com.malmstein.example.sunshine.WeatherActivity">
+      <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value="com.malmstein.example.sunshine.WeatherActivity" />
+    </activity>
+    <activity
+      android:name="com.malmstein.example.sunshine.SettingsActivity"
+      android:label="@string/title_activity_settings"></activity>
+
+    <provider
+      android:authorities="com.example.android.sunshine.app"
+      android:name=".data.WeatherProvider"
+      android:enabled="true"
+      android:exported="true"/>
+
   </application>
 
 </manifest>

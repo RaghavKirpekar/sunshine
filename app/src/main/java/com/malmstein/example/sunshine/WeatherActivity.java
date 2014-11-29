@@ -1,11 +1,15 @@
 package com.malmstein.example.sunshine;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends FragmentActivity {
+public class WeatherActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +38,28 @@ public class MainActivity extends FragmentActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        }
+
+        if (id == R.id.action_map) {
+            showMap();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showMap(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String location = preferences.getString(getString(R.string.pref_key_location), getString(R.string.pref_location_default));
+        Uri geolocation = Uri.parse("geo:0.0?").buildUpon()
+                .appendQueryParameter("q", location)
+                .build();
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW);
+        mapIntent.setData(geolocation);
+
+        startActivity(mapIntent);
     }
 
 
