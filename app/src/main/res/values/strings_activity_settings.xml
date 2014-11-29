@@ -8,8 +8,12 @@
   <string name="pref_title_location">Location</string>
   <string name="pref_location_default">E2 9BD</string>
 
+  <string name="pref_key_location">key_location</string>
+  <string name="pref_key_units">key_units</string>
+
   <string name="pref_title_units">Units</string>
   <string name="pref_units_default">metrics</string>
+
   <string-array name="pref_units_list_titles">
     <item>Metric</item>
     <item>Imperial</item>
