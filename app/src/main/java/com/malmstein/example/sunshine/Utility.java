@@ -13,9 +13,36 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Utility {
+    public static String getPreferredLocation(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString(context.getString(R.string.pref_key_location),
+                context.getString(R.string.pref_location_default));
+    }
+
+    public static boolean isMetric(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString(context.getString(R.string.pref_key_units),
+                context.getString(R.string.pref_units_metric))
+                .equals(context.getString(R.string.pref_units_metric));
+    }
+
+    static String formatTemperature(Context context, double temperature, boolean isMetric) {
+        double temp;
+        if (!isMetric) {
+            temp = 9 * temperature / 5 + 32;
+        } else {
+            temp = temperature;
+        }
+        return context.getString(R.string.format_temperature, temp);
+    }
+
+    static String formatDate(String dateString) {
+        Date date = WeatherContract.getDateFromDb(dateString);
+        return DateFormat.getDateInstance().format(date);
+    }
 
     // Format used for storing dates in the database.  ALso used for converting those strings
-// back into date objects for comparison/processing.
+    // back into date objects for comparison/processing.
     public static final String DATE_FORMAT = "yyyyMMdd";
 
     /**
@@ -42,10 +69,11 @@ public class Utility {
         // is "Today, June 24"
         if (todayStr.equals(dateStr)) {
             String today = context.getString(R.string.today);
-            return context.getString(
-                    R.string.format_full_friendly_date,
+            int formatId = R.string.format_full_friendly_date;
+            return String.format(context.getString(
+                    formatId,
                     today,
-                    getFormattedMonthDay(context, dateStr));
+                    getFormattedMonthDay(context, dateStr)));
         } else {
             Calendar cal = Calendar.getInstance();
             cal.setTime(todayDate);
@@ -124,34 +152,6 @@ public class Utility {
         }
     }
 
-    public static String getPreferredLocation(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString(context.getString(R.string.pref_key_location),
-                context.getString(R.string.pref_location_default));
-    }
-
-    public static boolean isMetric(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString(context.getString(R.string.pref_key_units),
-                context.getString(R.string.pref_units_default))
-                .equals(context.getString(R.string.pref_units_default));
-    }
-
-    static String formatTemperature(Context context, double temperature, boolean isMetric) {
-        double temp;
-        if (!isMetric) {
-            temp = 9 * temperature / 5 + 32;
-        } else {
-            temp = temperature;
-        }
-        return context.getString(R.string.format_temperature, temp);
-    }
-
-    static String formatDate(String dateString) {
-        Date date = WeatherContract.getDateFromDb(dateString);
-        return DateFormat.getDateInstance().format(date);
-    }
-
     public static String getFormattedWind(Context context, float windSpeed, float degrees) {
         int windFormat;
         if (Utility.isMetric(context)) {
@@ -183,5 +183,77 @@ public class Utility {
             direction = "NW";
         }
         return String.format(context.getString(windFormat), windSpeed, direction);
+    }
+
+    /**
+     * Helper method to provide the icon resource id according to the weather condition id returned
+     * by the OpenWeatherMap call.
+     *
+     * @param weatherId from OpenWeatherMap API response
+     * @return resource id for the corresponding icon. -1 if no relation is found.
+     */
+    public static int getIconResourceForWeatherCondition(int weatherId) {
+        // Based on weather code data found at:
+        // http://bugs.openweathermap.org/projects/api/wiki/Weather_Condition_Codes
+        if (weatherId >= 200 && weatherId <= 232) {
+            return R.drawable.ic_storm;
+        } else if (weatherId >= 300 && weatherId <= 321) {
+            return R.drawable.ic_light_rain;
+        } else if (weatherId >= 500 && weatherId <= 504) {
+            return R.drawable.ic_rain;
+        } else if (weatherId == 511) {
+            return R.drawable.ic_snow;
+        } else if (weatherId >= 520 && weatherId <= 531) {
+            return R.drawable.ic_rain;
+        } else if (weatherId >= 600 && weatherId <= 622) {
+            return R.drawable.ic_snow;
+        } else if (weatherId >= 701 && weatherId <= 761) {
+            return R.drawable.ic_fog;
+        } else if (weatherId == 761 || weatherId == 781) {
+            return R.drawable.ic_storm;
+        } else if (weatherId == 800) {
+            return R.drawable.ic_clear;
+        } else if (weatherId == 801) {
+            return R.drawable.ic_light_clouds;
+        } else if (weatherId >= 802 && weatherId <= 804) {
+            return R.drawable.ic_cloudy;
+        }
+        return -1;
+    }
+
+    /**
+     * Helper method to provide the art resource id according to the weather condition id returned
+     * by the OpenWeatherMap call.
+     *
+     * @param weatherId from OpenWeatherMap API response
+     * @return resource id for the corresponding image. -1 if no relation is found.
+     */
+    public static int getArtResourceForWeatherCondition(int weatherId) {
+        // Based on weather code data found at:
+        // http://bugs.openweathermap.org/projects/api/wiki/Weather_Condition_Codes
+        if (weatherId >= 200 && weatherId <= 232) {
+            return R.drawable.art_storm;
+        } else if (weatherId >= 300 && weatherId <= 321) {
+            return R.drawable.art_light_rain;
+        } else if (weatherId >= 500 && weatherId <= 504) {
+            return R.drawable.art_rain;
+        } else if (weatherId == 511) {
+            return R.drawable.art_snow;
+        } else if (weatherId >= 520 && weatherId <= 531) {
+            return R.drawable.art_rain;
+        } else if (weatherId >= 600 && weatherId <= 622) {
+            return R.drawable.art_rain;
+        } else if (weatherId >= 701 && weatherId <= 761) {
+            return R.drawable.art_fog;
+        } else if (weatherId == 761 || weatherId == 781) {
+            return R.drawable.art_storm;
+        } else if (weatherId == 800) {
+            return R.drawable.art_clear;
+        } else if (weatherId == 801) {
+            return R.drawable.art_light_clouds;
+        } else if (weatherId >= 802 && weatherId <= 804) {
+            return R.drawable.art_clouds;
+        }
+        return -1;
     }
 }

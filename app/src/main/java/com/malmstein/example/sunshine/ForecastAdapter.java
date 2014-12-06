@@ -47,8 +47,8 @@ public class ForecastAdapter extends CursorAdapter {
 
         ViewHolder holder = (ViewHolder) view.getTag();
 
-        int weatherId = cursor.getInt(WeatherContract.COL_WEATHER_ID);
-        holder.iconView.setImageResource(R.drawable.ic_launcher);
+        int weatherId = cursor.getInt(WeatherContract.COL_WEATHER_CONDITION_ID);
+        holder.iconView.setImageResource(Utility.getIconResourceForWeatherCondition(weatherId));
 
         String dateString = cursor.getString(WeatherContract.COL_WEATHER_DATE);
         holder.dateView.setText(Utility.getFriendlyDayString(context, dateString));

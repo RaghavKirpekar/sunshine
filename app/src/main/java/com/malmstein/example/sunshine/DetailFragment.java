@@ -179,7 +179,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         if (data != null && data.moveToFirst()) {
 
             int weatherId = data.getInt(data.getColumnIndex(WeatherEntry.COLUMN_WEATHER_ID));
-//            mIconView.setImageResource(Utility.getArtResourceForWeatherCondition(weatherId));
+            mIconView.setImageResource(Utility.getArtResourceForWeatherCondition(weatherId));
 
             // Read date from cursor and update views for day of week and date
             String date = data.getString(data.getColumnIndex(WeatherEntry.COLUMN_DATETEXT));
