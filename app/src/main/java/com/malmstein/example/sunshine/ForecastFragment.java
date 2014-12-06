@@ -34,6 +34,7 @@ public class ForecastFragment extends Fragment implements LoaderCallbacks<Cursor
     private String mLocation;
     private int mPosition = ListView.INVALID_POSITION;
     private static final String SELECTED_KEY = "selected_position";
+    private boolean mUseTodayLayout;
 
     public ForecastFragment() {
     }
@@ -160,6 +161,13 @@ public class ForecastFragment extends Fragment implements LoaderCallbacks<Cursor
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mForecastAdapter.swapCursor(null);
+    }
+
+    public void setUseTodayLayout(boolean mTwoPane) {
+        mUseTodayLayout = mTwoPane;
+        if (mForecastAdapter != null){
+            mForecastAdapter.setUseTodayLayout(mTwoPane);
+        }
     }
 
     /**

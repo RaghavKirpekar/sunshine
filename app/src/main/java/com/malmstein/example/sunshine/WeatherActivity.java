@@ -30,6 +30,8 @@ public class WeatherActivity extends FragmentActivity implements ForecastFragmen
             mTwoPane = false;
         }
 
+        ForecastFragment forecastFragment = (ForecastFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_forecast);
+        forecastFragment.setUseTodayLayout(!mTwoPane);
     }
 
     @Override
