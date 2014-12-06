@@ -23,7 +23,7 @@ public class ForecastAdapter extends CursorAdapter {
         super(context, c, flags);
     }
 
-    public void setUseTodayLayout(boolean useTodayLayout){
+    public void setUseTodayLayout(boolean useTodayLayout) {
         mUseTodayLayout = useTodayLayout;
     }
 
@@ -54,7 +54,10 @@ public class ForecastAdapter extends CursorAdapter {
         ViewHolder holder = (ViewHolder) view.getTag();
 
         int weatherId = cursor.getInt(WeatherContract.COL_WEATHER_CONDITION_ID);
-        holder.iconView.setImageResource(Utility.getIconResourceForWeatherCondition(weatherId));
+        int viewType = getItemViewType(cursor.getPosition());
+        holder.iconView.setImageResource(viewType == VIEW_TYPE_TODAY ?
+                Utility.getArtResourceForWeatherCondition(weatherId) :
+                Utility.getIconResourceForWeatherCondition(weatherId));
 
         String dateString = cursor.getString(WeatherContract.COL_WEATHER_DATE);
         holder.dateView.setText(Utility.getFriendlyDayString(context, dateString));
