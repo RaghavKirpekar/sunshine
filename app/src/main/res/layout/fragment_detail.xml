@@ -12,20 +12,17 @@
 
     <!-- Header: Day, Date -->
     <TextView
-      android:fontFamily="sans-serif-condensed"
+      android:textAppearance="@android:style/TextAppearance.Material.Headline"
       android:id="@+id/detail_day_textview"
       android:layout_height="wrap_content"
-      android:layout_width="wrap_content"
-      android:textColor="@color/black"
-      android:textSize="24sp" />
+      android:layout_width="wrap_content" />
 
     <TextView
-      android:fontFamily="sans-serif-condensed"
+      android:textAppearance="@android:style/TextAppearance.Material.Title"
       android:id="@+id/detail_date_textview"
       android:layout_height="wrap_content"
       android:layout_width="wrap_content"
-      android:textColor="@color/grey_700"
-      android:textSize="16sp" />
+      android:textColor="@color/grey_700" />
 
     <!-- Main content: high, low, art, weather state -->
     <LinearLayout
@@ -40,22 +37,22 @@
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1"
+        android:paddingLeft="20dp"
         android:orientation="vertical">
 
         <TextView
-          android:fontFamily="sans-serif-light"
+          android:textAppearance="@android:style/TextAppearance.Material.Display3"
           android:id="@+id/detail_high_textview"
           android:layout_height="wrap_content"
-          android:layout_width="wrap_content"
-          android:textSize="96sp" />
+          android:layout_width="wrap_content" />
 
         <TextView
           android:id="@+id/detail_low_textview"
-          android:layout_gravity="center_horizontal"
+          android:textAppearance="@android:style/TextAppearance.Material.Display2"
           android:layout_height="wrap_content"
           android:layout_width="wrap_content"
-          android:textColor="@color/grey_700"
-          android:textSize="48sp" />
+          android:layout_marginLeft="8dp"
+          android:textColor="@color/grey_700" />
       </LinearLayout>
 
       <LinearLayout
@@ -75,7 +72,7 @@
           android:id="@+id/detail_forecast_textview"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:textAppearance="?android:textAppearanceLarge"
+          android:textAppearance="@android:style/TextAppearance.Material.Title"
           android:textColor="@color/grey_700" />
       </LinearLayout>
     </LinearLayout>
@@ -83,16 +80,15 @@
     <!-- Humidity, wind, pressure -->
     <LinearLayout
       android:layout_height="match_parent"
-      android:layout_marginRight="0dp"
       android:layout_marginTop="16dp"
       android:layout_width="match_parent"
       android:orientation="vertical">
 
       <TextView
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
         android:id="@+id/detail_humidity_textview"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:textAppearance="?android:textAppearanceLarge"
         android:text="48%" />
 
       <TextView
@@ -100,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_width="match_parent"
-        android:textAppearance="?android:textAppearanceLarge"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
         android:text="6 km/h NW" />
 
       <TextView
@@ -108,8 +104,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_width="match_parent"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:text="1014"/>
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
+        android:text="1014" />
     </LinearLayout>
   </LinearLayout>
 </ScrollView>

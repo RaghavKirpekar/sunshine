@@ -7,79 +7,70 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="@dimen/activity_vertical_margin">
 
     <LinearLayout
       android:layout_height="wrap_content"
       android:layout_width="wrap_content"
-      android:minWidth="56dp"
+      android:minWidth="180dp"
+      android:gravity="left"
       android:orientation="vertical">
 
       <!-- Header: Day, Date -->
       <TextView
-        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="@android:style/TextAppearance.Material.Headline"
         android:id="@+id/detail_day_textview"
         android:layout_height="wrap_content"
-        android:minWidth="120dp"
-        android:layout_width="wrap_content"
-        android:textSize="24sp" />
+        android:layout_width="wrap_content"/>
 
       <TextView
-        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
         android:id="@+id/detail_date_textview"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:textColor="@color/grey_700"
-        android:textSize="20sp" />
+        android:textColor="@color/grey_700" />
 
     </LinearLayout>
 
     <!-- Main content: high, low, art, weather state -->
     <LinearLayout
       android:layout_height="wrap_content"
-      android:layout_marginLeft="16dp"
       android:layout_width="wrap_content"
       android:orientation="vertical">
 
       <TextView
-        android:fontFamily="sans-serif-light"
+        android:textAppearance="@android:style/TextAppearance.Material.Display4"
         android:id="@+id/detail_high_textview"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textSize="96sp" />
+        android:layout_width="wrap_content"/>
 
-      <TextView
+      <TextView android:textAppearance="@android:style/TextAppearance.Material.Display3"
         android:id="@+id/detail_low_textview"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_width="wrap_content"
-        android:textColor="@color/grey_700"
-        android:textSize="48sp" />
+        android:textColor="@color/grey_700"/>
 
       <!-- Humidity, wind, pressure -->
       <TextView
-        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
         android:id="@+id/detail_humidity_textview"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_width="wrap_content"
-        android:textAppearance="?android:textAppearanceLarge" />
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content" />
 
       <TextView
-        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
         android:id="@+id/detail_pressure_textview"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_width="wrap_content"
-        android:textAppearance="?android:textAppearanceLarge" />
+        android:layout_width="wrap_content" />
 
       <TextView
-        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
         android:id="@+id/detail_wind_textview"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_width="wrap_content"
-        android:textAppearance="?android:textAppearanceLarge" />
+        android:layout_width="wrap_content" />
     </LinearLayout>
 
     <LinearLayout
@@ -91,16 +82,15 @@
 
       <ImageView
         android:id="@+id/detail_icon"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content" />
+        android:layout_height="@dimen/today_image_height"
+        android:layout_width="@dimen/today_image_width" />
 
       <TextView
-        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
         android:id="@+id/detail_forecast_textview"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:textColor="@color/grey_700"
-        android:textAppearance="?android:textAppearanceLarge" />
+        android:textColor="@color/grey_700" />
     </LinearLayout>
   </LinearLayout>
 </ScrollView>

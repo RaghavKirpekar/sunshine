@@ -1,59 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="horizontal"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:gravity="center_vertical"
   android:minHeight="?android:attr/listPreferredItemHeight"
-  android:padding="16dp"
+  android:orientation="horizontal"
   android:background="@drawable/touch_selector">
 
-  <ImageView
-    android:id="@+id/weather_image"
-    android:layout_width="0.dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1" />
+  <FrameLayout
+    android:layout_width="60dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+      android:id="@+id/weather_image"
+      android:layout_gravity="center"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+
+  </FrameLayout>
 
   <LinearLayout
+    android:layout_height="wrap_content"
     android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:layout_weight="2"
+    android:layout_weight="7"
+    android:gravity="left"
     android:orientation="vertical">
 
     <TextView
       android:id="@+id/weather_date"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="TOMORROW" />
+      android:textAppearance="@android:style/TextAppearance.Material.Title" />
 
     <TextView
       android:id="@+id/weather_forecast"
       android:layout_width="wrap_content"
-      android:layout_height="match_parent"
-      android:text="CLEAR" />
+      android:layout_height="wrap_content"
+      android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
   </LinearLayout>
 
   <LinearLayout
     android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
-    android:orientation="vertical"
-    android:gravity="right"   >
+    android:layout_weight="5"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
       android:id="@+id/weather_high_temp"
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="21" />
+      android:gravity="center_horizontal"
+      android:textAppearance="@android:style/TextAppearance.Material.Title" />
 
     <TextView
       android:id="@+id/weather_low_temp"
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="8" />
+      android:fontFamily="sans-serif-condensed"
+      android:gravity="center_horizontal"
+      android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
   </LinearLayout>
-
 
 </LinearLayout>
