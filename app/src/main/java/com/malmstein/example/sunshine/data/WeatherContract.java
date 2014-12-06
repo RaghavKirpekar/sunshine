@@ -77,12 +77,11 @@ public class WeatherContract {
      * @param dateText the input date string
      * @return the Date object
      */
-    public static Date getDateFromDb(String dateText) throws ParseException {
+    public static Date getDateFromDb(String dateText) {
         SimpleDateFormat dbDateFormat = new SimpleDateFormat(DATE_FORMAT);
         try {
             return dbDateFormat.parse(dateText);
         } catch (ParseException e) {
-            e.printStackTrace();
             return null;
         }
     }
