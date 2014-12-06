@@ -6,4 +6,10 @@
     <item name="android:colorPrimaryDark">@color/primary_dark</item>
   </style>
 
+  <!-- Style for forecast listview -->
+  +
+
+  <style name="ForecastListStyle">
+  </style>
+
 </resources>
