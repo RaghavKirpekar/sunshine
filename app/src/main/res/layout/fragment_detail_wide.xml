@@ -83,7 +83,8 @@
       <ImageView
         android:id="@+id/detail_icon"
         android:layout_height="@dimen/today_image_height"
-        android:layout_width="@dimen/today_image_width" />
+        android:layout_width="@dimen/today_image_width"
+        android:contentDescription="@string/weather_image"/>
 
       <TextView
         android:textAppearance="@android:style/TextAppearance.Material.Title"

@@ -55,7 +55,8 @@
       android:id="@+id/weather_image"
       android:layout_width="@dimen/today_image_width"
       android:layout_height="@dimen/today_image_height"
-      android:layout_gravity="center_horizontal"/>
+      android:layout_gravity="center_horizontal"
+      android:contentDescription="@string/weather_image"/>
 
     <TextView
       android:id="@+id/weather_forecast"
