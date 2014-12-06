@@ -10,7 +10,6 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.ShareActionProvider;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,11 +26,7 @@ import static com.malmstein.example.sunshine.data.WeatherContract.WeatherEntry;
 
 public class DetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final String LOG_TAG = DetailFragment.class.getSimpleName();
-
     private static final String FORECAST_SHARE_HASHTAG = " #SunshineApp";
-
-    public static final String DATE_KEY = "forecast_date";
 
     private ShareActionProvider mShareActionProvider;
     private String mLocation;
@@ -65,6 +60,12 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     private TextView mPressureView;
 
     public DetailFragment() {
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
@@ -116,17 +117,11 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        Log.v(LOG_TAG, "in onCreateOptionsMenu");
-        // Inflate the menu; this adds items to the action bar if it is present.
         inflater.inflate(R.menu.menu_detail_fragment, menu);
-
-        // Retrieve the share menu item
         MenuItem menuItem = menu.findItem(R.id.action_share);
 
-        // Get the provider and hold onto it to set/change the share intent.
         mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
 
-        // If onLoadFinished happens before this, we can go ahead and set the share intent now.
         if (mForecast != null) {
             mShareActionProvider.setShareIntent(createShareForecastIntent());
         }
@@ -225,7 +220,6 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             // We still need this for the share intent
             mForecast = String.format("%s - %s - %s/%s", dateText, description, high, low);
 
-            // If onCreateOptionsMenu has already happened, we need to update the share intent now.
             if (mShareActionProvider != null) {
                 mShareActionProvider.setShareIntent(createShareForecastIntent());
             }

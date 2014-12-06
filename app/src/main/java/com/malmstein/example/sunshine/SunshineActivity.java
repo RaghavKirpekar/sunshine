@@ -23,8 +23,6 @@ public class SunshineActivity extends ActionBarActivity {
     private InsetAwareToolbar appBar;
     private ColorTweaker colorTweaker;
 
-    private boolean setContentViewCalled;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,22 +36,29 @@ public class SunshineActivity extends ActionBarActivity {
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
-        setContentViewCalled = true;
         findAndSetAppBarIfAny();
     }
 
     @Override
     public void setContentView(View view) {
         super.setContentView(view);
-        setContentViewCalled = true;
         findAndSetAppBarIfAny();
     }
 
     @Override
     public void setContentView(View view, ViewGroup.LayoutParams params) {
         super.setContentView(view, params);
-        setContentViewCalled = true;
         findAndSetAppBarIfAny();
+    }
+
+    protected void setupUpIndicatorOn() {
+        appBar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        appBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void findAndSetAppBarIfAny() {
