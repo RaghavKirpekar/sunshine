@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.malmstein.example.sunshine.data.WeatherContract;
+import com.malmstein.example.sunshine.utils.Utility;
 
 import java.util.Date;
 
@@ -34,7 +35,6 @@ public class ForecastFragment extends Fragment implements LoaderCallbacks<Cursor
     private String mLocation;
     private int mPosition = ListView.INVALID_POSITION;
     private static final String SELECTED_KEY = "selected_position";
-    private boolean mUseTodayLayout;
 
     public ForecastFragment() {
     }
@@ -163,10 +163,9 @@ public class ForecastFragment extends Fragment implements LoaderCallbacks<Cursor
         mForecastAdapter.swapCursor(null);
     }
 
-    public void setUseTodayLayout(boolean mTwoPane) {
-        mUseTodayLayout = mTwoPane;
+    public void setUseTodayLayout(boolean useTodayLayout) {
         if (mForecastAdapter != null){
-            mForecastAdapter.setUseTodayLayout(mTwoPane);
+            mForecastAdapter.setUseTodayLayout(useTodayLayout);
         }
     }
 

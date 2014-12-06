@@ -1,9 +1,10 @@
-package com.malmstein.example.sunshine;
+package com.malmstein.example.sunshine.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.malmstein.example.sunshine.R;
 import com.malmstein.example.sunshine.data.WeatherContract;
 
 import java.text.DateFormat;
@@ -26,7 +27,7 @@ public class Utility {
                 .equals(context.getString(R.string.pref_units_metric));
     }
 
-    static String formatTemperature(Context context, double temperature, boolean isMetric) {
+    public static String formatTemperature(Context context, double temperature, boolean isMetric) {
         double temp;
         if (!isMetric) {
             temp = 9 * temperature / 5 + 32;

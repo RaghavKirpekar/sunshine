@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.malmstein.example.sunshine.data.WeatherContract;
+import com.malmstein.example.sunshine.utils.Utility;
 
 public class ForecastAdapter extends CursorAdapter {
 
