@@ -9,17 +9,27 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class WeatherActivity extends FragmentActivity {
+public class WeatherActivity extends FragmentActivity implements ForecastFragment.Callback {
+
+    boolean mTwoPane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new ForecastFragment())
-                    .commit();
+
+        if (findViewById(R.id.weather_detail_container) != null) {
+            mTwoPane = true;
+
+            if (savedInstanceState == null) {
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.weather_detail_container, new DetailFragment())
+                        .commit();
+            }
+        } else {
+            mTwoPane = false;
         }
+
     }
 
     @Override
@@ -50,7 +60,7 @@ public class WeatherActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showMap(){
+    private void showMap() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String location = preferences.getString(getString(R.string.pref_key_location), getString(R.string.pref_location_default));
         Uri geolocation = Uri.parse("geo:0.0?").buildUpon()
@@ -62,5 +72,22 @@ public class WeatherActivity extends FragmentActivity {
         startActivity(mapIntent);
     }
 
+    @Override
+    public void onItemSelected(String date) {
+        if (mTwoPane) {
+            Bundle args = new Bundle();
+            args.putString(DetailActivity.DATE_KEY, date);
+
+            DetailFragment fragment = new DetailFragment();
+            fragment.setArguments(args);
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.weather_detail_container, fragment)
+                    .commit();
+        } else {
+            Intent intent = new Intent(this, DetailActivity.class).putExtra(DetailActivity.DATE_KEY, date);
+            startActivity(intent);
+        }
+    }
 
 }
