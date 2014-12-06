@@ -42,13 +42,13 @@
     android:gravity="right"   >
 
     <TextView
-      android:id="@+id/list_item_high_textview"
+      android:id="@+id/weather_high_temp"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="21" />
 
     <TextView
-      android:id="@+id/list_item_low_textview"
+      android:id="@+id/weather_low_temp"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="8" />
