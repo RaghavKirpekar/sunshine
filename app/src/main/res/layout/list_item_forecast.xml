@@ -27,7 +27,7 @@
       android:text="TOMORROW" />
 
     <TextView
-      android:id="@+id/weather_forecats"
+      android:id="@+id/weather_forecast"
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
       android:text="CLEAR" />
