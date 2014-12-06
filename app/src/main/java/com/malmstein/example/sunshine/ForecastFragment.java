@@ -23,9 +23,6 @@ import java.util.Date;
 
 import static com.malmstein.example.sunshine.data.WeatherContract.*;
 
-/**
- * Encapsulates fetching the forecast and displaying it as a {@link ListView} layout.
- */
 public class ForecastFragment extends Fragment implements LoaderCallbacks<Cursor> {
 
     private ForecastAdapter mForecastAdapter;
@@ -63,7 +60,7 @@ public class ForecastFragment extends Fragment implements LoaderCallbacks<Cursor
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_forecast, container, false);
 
         mForecastAdapter = new ForecastAdapter(getActivity(), null, 0);
         mListView = (ListView) rootView.findViewById(R.id.listview_forecast);

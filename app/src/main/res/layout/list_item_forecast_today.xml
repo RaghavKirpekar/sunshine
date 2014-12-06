@@ -5,50 +5,65 @@
   android:layout_height="wrap_content"
   android:gravity="center_vertical"
   android:minHeight="?android:attr/listPreferredItemHeight"
-  android:padding="16dp">
+  android:background="@drawable/today_touch_selector">
 
   <LinearLayout
+    android:layout_height="wrap_content"
     android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
+    android:layout_weight="7"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="16dp"
+    android:layout_marginLeft="50dp"
     android:orientation="vertical">
 
     <TextView
       android:id="@+id/weather_date"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:textAppearance="@android:style/TextAppearance.Material.Title"
+      android:textColor="@color/white"
       android:text="TOMORROW" />
 
     <TextView
       android:id="@+id/weather_high_temp"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:textAppearance="@android:style/TextAppearance.Material.Display3"
+      android:textColor="@color/white"
       android:text="21" />
 
     <TextView
       android:id="@+id/weather_low_temp"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:textAppearance="@android:style/TextAppearance.Material.Display1"
+      android:textColor="@color/white"
+      android:layout_marginLeft="8dp"
       android:text="8" />
 
   </LinearLayout>
 
   <LinearLayout
+    android:layout_height="wrap_content"
     android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
+    android:layout_weight="5"
+    android:layout_marginRight="16dp"
     android:orientation="vertical"
-    android:gravity="right"   >
+    android:gravity="center_horizontal|bottom">
 
     <ImageView
       android:id="@+id/weather_image"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content" />
+      android:layout_width="@dimen/today_image_width"
+      android:layout_height="@dimen/today_image_height"
+      android:layout_gravity="center_horizontal"/>
 
     <TextView
       android:id="@+id/weather_forecast"
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:textAppearance="@android:style/TextAppearance.Material.Title"
+      android:textColor="@color/white"
+      android:gravity="center_horizontal"
       android:text="CLEAR" />
 
   </LinearLayout>

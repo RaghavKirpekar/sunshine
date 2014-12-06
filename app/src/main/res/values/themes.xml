@@ -10,6 +10,7 @@
 
   <style name="Sunshine.Actionbar" parent="Widget.AppCompat.Toolbar">
     <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    <item name="android:elevation">2dp</item>
     <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
   </style>
 
