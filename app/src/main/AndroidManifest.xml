@@ -35,6 +35,11 @@
       android:enabled="true"
       android:exported="true" />
 
+    <service android:name="com.malmstein.example.sunshine.service.SunshineService"/>
+
+    <receiver android:name="com.malmstein.example.sunshine.service.SunshineService$AlarmReceiver"
+      android:enabled="true"/>
+
   </application>
 
 </manifest>
