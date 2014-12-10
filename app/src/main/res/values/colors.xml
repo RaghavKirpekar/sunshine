@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="primary">#4caf50</color>
+
+  <color name="primary">#ff1ca8f4</color>
+  <color name="primary_dark">#1ca8f4</color>
   <color name="accent">#ff9800</color>
-  <color name="primary_dark">#388e3c</color>
+
+  <color name="navigation_bar_background">@color/black</color>
+  <color name="app_background">@android:color/white</color>
+
+  <color name="white">#FFFFFF</color>
+  <color name="grey">#cccccc</color>
+  <color name="grey_700">#646464</color>
+  <color name="black">#000000</color>
+  <color name="sunshine_light_blue">#ff64c2f4</color>
+  <color name="sunshine_blue">#ff1ca8f4</color>
+
 </resources>

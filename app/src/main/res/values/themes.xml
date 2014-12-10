@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="Sunshine" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowBackground">@color/app_background</item>
+    <item name="colorPrimary">@color/primary</item>
+    <item name="colorAccent">@color/accent</item>
+    <item name="colorPrimaryDark">@color/primary_dark</item>
+  </style>
+
+  <style name="Sunshine.Actionbar" parent="Widget.AppCompat.Toolbar">
+    <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    <item name="android:elevation">2dp</item>
+    <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+  </style>
+
+  <style name="Sunshine.Actionbar.Logo">
+    <item name="android:src">@drawable/ic_logo</item>
+  </style>
+
+</resources>
