@@ -1,6 +1,5 @@
 package com.malmstein.example.sunshine;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,7 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.malmstein.example.sunshine.data.WeatherContract;
-import com.malmstein.example.sunshine.service.SunshineService;
+import com.malmstein.example.sunshine.sync.SunshineSyncAdapter;
 import com.malmstein.example.sunshine.utils.Utility;
 
 import java.util.Date;
@@ -93,10 +92,17 @@ public class ForecastFragment extends Fragment implements LoaderCallbacks<Cursor
     }
 
     private void updateWeather() {
-        Intent intent = new Intent(getActivity(), SunshineService.class);
-        intent.putExtra(SunshineService.LOCATION_QUERY_EXTRA,
-                Utility.getPreferredLocation(getActivity()));
-        getActivity().startService(intent);
+
+        SunshineSyncAdapter.syncImmediately(getActivity());
+
+//        Intent alarmIntent = new Intent(getActivity(), SunshineService.AlarmReceiver.class);
+//        alarmIntent.putExtra(SunshineService.LOCATION_QUERY_EXTRA,
+//                Utility.getPreferredLocation(getActivity()));
+//
+//        PendingIntent pi = PendingIntent.getBroadcast(getActivity(), 0, alarmIntent, PendingIntent.FLAG_ONE_SHOT);
+//        AlarmManager am = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+//
+//        am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, pi);
     }
 
     @Override
