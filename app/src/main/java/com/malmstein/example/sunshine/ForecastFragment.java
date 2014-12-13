@@ -92,17 +92,7 @@ public class ForecastFragment extends Fragment implements LoaderCallbacks<Cursor
     }
 
     private void updateWeather() {
-
         SunshineSyncAdapter.syncImmediately(getActivity());
-
-//        Intent alarmIntent = new Intent(getActivity(), SunshineService.AlarmReceiver.class);
-//        alarmIntent.putExtra(SunshineService.LOCATION_QUERY_EXTRA,
-//                Utility.getPreferredLocation(getActivity()));
-//
-//        PendingIntent pi = PendingIntent.getBroadcast(getActivity(), 0, alarmIntent, PendingIntent.FLAG_ONE_SHOT);
-//        AlarmManager am = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-//
-//        am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, pi);
     }
 
     @Override
@@ -167,7 +157,7 @@ public class ForecastFragment extends Fragment implements LoaderCallbacks<Cursor
     }
 
     public void setUseTodayLayout(boolean useTodayLayout) {
-        if (mForecastAdapter != null){
+        if (mForecastAdapter != null) {
             mForecastAdapter.setUseTodayLayout(useTodayLayout);
         }
     }

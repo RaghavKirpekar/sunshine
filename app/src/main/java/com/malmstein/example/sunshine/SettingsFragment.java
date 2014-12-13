@@ -7,8 +7,9 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 import com.malmstein.example.sunshine.data.WeatherContract;
+import com.malmstein.example.sunshine.sync.SunshineSyncAdapter;
 
-public class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener{
+public class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
 
     boolean mBindingPreference;
 
@@ -52,9 +53,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         // are we starting the preference activity?
         if (!mBindingPreference) {
             if (preference.getKey().equals(getString(R.string.pref_key_location))) {
-                FetchWeatherTask weatherTask = new FetchWeatherTask(getActivity());
-                String location = newValue.toString();
-                weatherTask.execute(location);
+                SunshineSyncAdapter.syncImmediately(getActivity());
             } else {
                 // notify code that weather may be impacted
                 getActivity().getContentResolver().notifyChange(WeatherContract.WeatherEntry.CONTENT_URI, null);

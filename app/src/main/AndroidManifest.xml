@@ -29,6 +29,7 @@
         android:name="android.support.PARENT_ACTIVITY"
         android:value="com.malmstein.example.sunshine.WeatherActivity" />
     </activity>
+
     <activity
       android:name="com.malmstein.example.sunshine.SettingsActivity"
       android:label="@string/title_activity_settings"></activity>
@@ -38,8 +39,6 @@
       android:name=".data.WeatherProvider"
       android:exported="false"
       android:syncable="true" />
-
-    <service android:name="com.malmstein.example.sunshine.service.SunshineService" />
 
     <service android:name=".sync.SunshineAuthenticatorService">
       <intent-filter>
@@ -61,10 +60,6 @@
         android:name="android.content.SyncAdapter"
         android:resource="@xml/syncadapter" />
     </service>
-
-    <receiver
-      android:name="com.malmstein.example.sunshine.service.SunshineService$AlarmReceiver"
-      android:enabled="true" />
 
   </application>
 
