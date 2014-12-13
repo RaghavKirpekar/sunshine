@@ -8,6 +8,8 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.malmstein.example.sunshine.sync.SunshineSyncAdapter;
+
 public class WeatherActivity extends SunshineActivity implements ForecastFragment.Callback {
 
     boolean mTwoPane;
@@ -32,6 +34,8 @@ public class WeatherActivity extends SunshineActivity implements ForecastFragmen
 
         ForecastFragment forecastFragment = (ForecastFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_forecast);
         forecastFragment.setUseTodayLayout(!mTwoPane);
+
+        SunshineSyncAdapter.initializeSyncAdapter(this);
     }
 
     @Override
